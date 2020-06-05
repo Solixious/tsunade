@@ -76,7 +76,7 @@ public class PostServiceImpl implements PostService {
 			throws BaseBusinessException {
 		final RoomEntity roomEntity = roomRepository.findByPathAndActiveTrue(path)
 				.orElseThrow(() -> new BaseBusinessException(ErrorCode.ROOM_NOT_FOUND));
-		Page<PostEntity> posts = postRepository.findByRoomAndActiveTrue(roomEntity,
+		final Page<PostEntity> posts = postRepository.findByRoomAndActiveTrue(roomEntity,
 				PageRequest.of(pageNo, systemParameterService.getSystemParameterInt(SystemParameter.PAGE_SIZE_POSTS)));
 		if (posts == null || posts.isEmpty()) {
 			throw new BaseBusinessException(ErrorCode.POST_NOT_FOUND);

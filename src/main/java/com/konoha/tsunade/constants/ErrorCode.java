@@ -13,7 +13,7 @@ public enum ErrorCode {
 	UNAUTHORIZED("The user is unauthorized to perform the requested action."),
 	SYSTEM_PARAMETER_NOT_FOUND("System parameter not found."), POST_NOT_FOUND("No posts found."),
 	POST_AND_ROOM_MISMATCH("Post and room mismatch in request"), ANONYMOUS_USER_NOT_FOUND("Anonymous user not found."),
-	REACTION_NOT_FOUND("Reaction not found.");
+	REACTION_NOT_FOUND("Reaction not found."), FEEDBACK_NOT_FOUND("Feedback not found.");
 
 	String description;
 

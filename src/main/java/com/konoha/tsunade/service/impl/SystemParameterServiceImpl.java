@@ -68,7 +68,8 @@ public class SystemParameterServiceImpl implements SystemParameterService {
 
 	@Override
 	public String getSystemParameterString(final SystemParameter systemParameter) throws BaseBusinessException {
-		return getSystemParameter(systemParameter).getValue();
+		SystemParameterResponse response = getSystemParameter(systemParameter);
+		return response != null ? response.getValue() : null;
 	}
 
 	private SystemParameterResponse convertToSystemParameterResponse(
