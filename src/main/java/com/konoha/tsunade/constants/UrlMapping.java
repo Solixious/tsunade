@@ -4,6 +4,7 @@ public interface UrlMapping {
 
 	String USER = "/user";
 	String ADMIN = "/admin";
+	String ADMIN_ALL = "/admin/**";
 	String REGISTER = "/register";
 	String TOKEN = "/token";
 	String RESET_PASSWORD = "/reset-password";
