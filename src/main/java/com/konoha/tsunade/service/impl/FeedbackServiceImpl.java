@@ -18,6 +18,7 @@ import com.konoha.tsunade.repository.FeedbackRepository;
 import com.konoha.tsunade.repository.UserRepository;
 import com.konoha.tsunade.service.FeedbackService;
 import com.konoha.tsunade.service.SystemParameterService;
+import com.konoha.tsunade.service.TimeService;
 
 @Service
 public class FeedbackServiceImpl implements FeedbackService {
@@ -30,6 +31,9 @@ public class FeedbackServiceImpl implements FeedbackService {
 
 	@Autowired
 	private SystemParameterService systemParameterService;
+
+	@Autowired
+	private TimeService timeService;
 
 	@Override
 	public FeedbackResponse addFeedback(final AddFeedbackRequest request, final String username)
@@ -56,6 +60,6 @@ public class FeedbackServiceImpl implements FeedbackService {
 
 	private FeedbackResponse convertToFeedbackResponse(final FeedbackEntity feedback) {
 		return FeedbackResponse.builder().id(feedback.getId()).feedback(feedback.getFeedback())
-				.status(feedback.getStatus()).build();
+				.status(feedback.getStatus()).created(timeService.toRelative(feedback.getCreateDate())).build();
 	}
 }
