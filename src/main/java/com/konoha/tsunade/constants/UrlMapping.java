@@ -22,4 +22,5 @@ public interface UrlMapping {
 	String PATH = "/{path}";
 	String MY_ROOMS = "/my-rooms";
 	String REACTION = "/reaction";
+	String FEEDBACK = "/feedback";
 }

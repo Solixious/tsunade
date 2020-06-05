@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.konoha.tsunade.constants.ColumnName;
@@ -25,7 +27,8 @@ import lombok.experimental.SuperBuilder;
 @Table(name = TableName.FEEDBACK_ENTITY)
 public class FeedbackEntity extends BaseEntity {
 
-	@Column(name = ColumnName.USER_ID)
+	@ManyToOne
+	@JoinColumn(name = ColumnName.USER_ID)
 	private UserEntity user;
 
 	@Column(name = ColumnName.FEEDBACK)
