@@ -2,10 +2,12 @@ package com.konoha.tsunade.service.impl;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import com.konoha.tsunade.constants.CacheName;
 import com.konoha.tsunade.constants.Constants;
 import com.konoha.tsunade.constants.ErrorCode;
 import com.konoha.tsunade.constants.SystemParameter;
@@ -111,6 +113,7 @@ public class RoomServiceImpl implements RoomService {
 	}
 
 	@Override
+	@Cacheable(value = CacheName.ROOM, key = CacheName.ROOM_PAGE)
 	public RoomDetailResponse getRoomDetail(final String path, final Integer pageNo, final String username)
 			throws BaseBusinessException {
 		final RoomEntity roomEntity = roomRepository.findByPathAndActiveTrue(path)
