@@ -58,6 +58,17 @@ public class FeedbackServiceImpl implements FeedbackService {
 		return feedbackEntities.map(this::convertToFeedbackResponse);
 	}
 
+	@Override
+	public Page<FeedbackResponse> getFeedbackByFeedbackStatus(FeedbackStatus status, Integer pageNo)
+			throws BaseBusinessException {
+		final Page<FeedbackEntity> feedbackEntities = feedbackRepository.findByStatusAndActiveTrue(status, PageRequest
+				.of(pageNo, systemParameterService.getSystemParameterInt(SystemParameter.PAGE_SIZE_FEEDBACKS)));
+		if (feedbackEntities == null || feedbackEntities.isEmpty()) {
+			throw new BaseBusinessException(ErrorCode.FEEDBACK_NOT_FOUND);
+		}
+		return feedbackEntities.map(this::convertToFeedbackResponse);
+	}
+
 	private FeedbackResponse convertToFeedbackResponse(final FeedbackEntity feedback) {
 		return FeedbackResponse.builder().id(feedback.getId()).feedback(feedback.getFeedback())
 				.status(feedback.getStatus()).created(timeService.toRelative(feedback.getCreateDate())).build();

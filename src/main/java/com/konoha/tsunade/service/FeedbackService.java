@@ -2,6 +2,7 @@ package com.konoha.tsunade.service;
 
 import org.springframework.data.domain.Page;
 
+import com.konoha.tsunade.constants.FeedbackStatus;
 import com.konoha.tsunade.exceptions.BaseBusinessException;
 import com.konoha.tsunade.model.request.AddFeedbackRequest;
 import com.konoha.tsunade.model.response.FeedbackResponse;
@@ -9,17 +10,26 @@ import com.konoha.tsunade.model.response.FeedbackResponse;
 public interface FeedbackService {
 
 	/**
-	 * @param request Add feedback request
+	 * @param request  Add feedback request
 	 * @param username User adding the feedback
 	 * @return Feedback response object
 	 * @throws BaseBusinessException
 	 */
 	FeedbackResponse addFeedback(AddFeedbackRequest request, String username) throws BaseBusinessException;
-	
+
 	/**
 	 * @param pageNo page number to be retrieved
 	 * @return page of feedback responses
 	 * @throws BaseBusinessException
 	 */
 	Page<FeedbackResponse> getAllFeedback(Integer pageNo) throws BaseBusinessException;
+
+	/**
+	 * @param status The status of feedback
+	 * @param pageNo page number to be retrieved
+	 * @return page of feedback responses
+	 * @throws BaseBusinessException
+	 */
+	Page<FeedbackResponse> getFeedbackByFeedbackStatus(FeedbackStatus status, Integer pageNo)
+			throws BaseBusinessException;
 }

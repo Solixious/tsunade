@@ -14,6 +14,7 @@ import lombok.NoArgsConstructor;
 public class SystemParameterResponse implements Serializable {
 
 	private static final long serialVersionUID = 6021222221200670391L;
+	
 	private String variable;
 	private String value;
 }

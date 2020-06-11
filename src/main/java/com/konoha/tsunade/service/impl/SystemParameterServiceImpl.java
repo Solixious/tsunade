@@ -17,7 +17,10 @@ import com.konoha.tsunade.model.response.SystemParameterResponse;
 import com.konoha.tsunade.repository.SystemParameterRepository;
 import com.konoha.tsunade.service.SystemParameterService;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Service
+@Slf4j
 public class SystemParameterServiceImpl implements SystemParameterService {
 
 	@Autowired
@@ -58,6 +61,8 @@ public class SystemParameterServiceImpl implements SystemParameterService {
 		if (systemParameterEntity.isEmpty()) {
 			return null;
 		}
+		log.error("Retrieving system parameter {} with value {}", systemParameter.name(),
+				systemParameterEntity.get().getValue());
 		return convertToSystemParameterResponse(systemParameterEntity.get());
 	}
 
