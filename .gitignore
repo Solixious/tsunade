@@ -37,3 +37,4 @@ build/
 target
 mvnw
 mvnw.cmd
+dump.rdb
